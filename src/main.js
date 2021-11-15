@@ -1,10 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import './index.css'
-import router from "./router";
+import router from "./router.js";
 
 //createApp(App).use(router).mount("#app");
 
-const app = createApp({})
-app.use(router)
-app.mount("#app")
+createApp({})
+.use(router)
+.mount("#app")
