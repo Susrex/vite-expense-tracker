@@ -1,6 +1,5 @@
 <template>
   <h1>{{ msg }}</h1>
-  <h2>Testing editing</h2>
   <button @click="count++">count is: {{ count }}</button>
   <p>Edit <code>components/HelloWorld.vue</code> to test hot module replacement.</p>
 </template>
