@@ -19,4 +19,5 @@ const router = createRouter({
     routes, // short for `routes: routes`
 })
 
+// exporting router because it is defined in separate file
 export default router;
