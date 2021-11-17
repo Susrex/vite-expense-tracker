@@ -25,11 +25,12 @@ const routes = [
   {to: "/", text: "Home"},
   { to: "/expenses", text: "Expenses" },
   { to: "/analysis", text: "Analysis" },
+  { to: "/register", text: "Register" },
+  { to: "/sign-up", text: "Sign Up" },
 ];
-const router = useRouter()
-// gets the path of active tab (eg. "/expenses")
-const activeRoute = computed(() => router.currentRoute.value.path);
-const isActive = path => path === activeRoute.value;
+const router = useRouter() // get a reference to our vue router
+const activeRoute = computed(() => router.currentRoute.value.path); // gets the path of active tab (eg. "/expenses")
+const isActive = path => path === activeRoute.value; // returns true if current path is active router path
 
 </script>
 
