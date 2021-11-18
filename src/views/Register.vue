@@ -20,6 +20,7 @@ const router = useRouter() // get a reference to our vue router
 const formTitle = ref<string>("Create a new Account:")
 const nameFormVisible = ref<boolean>(true)
 
+// firebase Authentication
 const registerByPasswordAndEmail = ($event) => {
   firebase
     .auth() //get the auth api
