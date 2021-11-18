@@ -16,6 +16,9 @@
 import firebase from "firebase/compat";
 import { useRouter } from 'vue-router' // import router
 import { ref } from 'vue'
+//import toast-notifications
+import { createToast } from 'mosha-vue-toastify';
+import 'mosha-vue-toastify/dist/style.css'
 //import components
 import SignInForm from "../components/SignInForm.vue";
 import Notification from "../components/Notification.vue";
@@ -55,8 +58,12 @@ const loginByPasswordAndEmail = ($event) => {
             errMsg.value = 'Email or password was incorrect'
             break
         }
-        console.log(errMsg.value)
-        alert(error.message);
+        createToast(errMsg.value,
+            //using bootstrap Notification component doesn't work
+            {
+              timeout: 2000,
+            })
+        //alert(error.message);
       });
 }
 </script>

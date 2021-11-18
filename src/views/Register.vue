@@ -13,6 +13,7 @@ import { useRouter } from 'vue-router' // import router
 import { ref } from 'vue'
 //import components
 import SignInForm from "../components/SignInForm.vue";
+import {createToast} from "mosha-vue-toastify";
 
 const router = useRouter() // get a reference to our vue router
 
@@ -21,6 +22,7 @@ const formTitle = ref<string>("Create a new Account:")
 const nameFormVisible = ref<boolean>(true)
 
 // firebase Authentication
+const errMsg = ref<string>("Error")
 const registerByPasswordAndEmail = ($event) => {
   firebase
     .auth() //get the auth api
@@ -31,13 +33,30 @@ const registerByPasswordAndEmail = ($event) => {
       })
         .then(() => {
           console.log(`Successfully registered user ${$event.name}`);
+          createToast(`Successfully registered user ${$event.name}`,
+              {
+                timeout: 2000,
+              })
           //todo: save current user here
           router.push('/expenses') // redirect to the feed
         })
     })
     .catch(error => {
-      console.log(error.code)
-      alert(error.message);
+      switch (error.code) {
+        case 'auth/weak-password':
+          errMsg.value = 'The password is too weak.'
+          break
+        case 'auth/email-already-in-use':
+          errMsg.value = 'Email already in use. Choose different email.'
+          break
+        default:
+          errMsg.value = error.message
+          break
+      }
+      createToast(errMsg.value,
+          {
+            timeout: 2000,
+          })
     });
 }
 </script>
