@@ -1,5 +1,5 @@
 <template>
-  <div style="max-width: 500px">
+  <div style="max-width: 500px" class="m-3">
     <h1>{{ formTitle }}</h1>
     <div class="mb-3" v-if="formNameVisible">
       <label for="formName" class="form-label">User Name:</label>

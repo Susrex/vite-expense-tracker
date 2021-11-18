@@ -1,10 +1,15 @@
 <template>
-  <component
-    :is="SignInForm"
-    :formTitle="formTitle"
-    :nameVisible="nameFormVisible"
-    class="mx-auto"
-    @userCredentials="loginByPasswordAndEmail"/>
+  <div>
+    <component
+        :is="SignInForm"
+        :formTitle="formTitle"
+        :nameVisible="nameFormVisible"
+        class="mx-auto"
+        @userCredentials="loginByPasswordAndEmail"/>
+      <component
+        :is="Notification"
+        :msg="notificationMsg"/>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -13,12 +18,16 @@ import { useRouter } from 'vue-router' // import router
 import { ref } from 'vue'
 //import components
 import SignInForm from "../components/SignInForm.vue";
+import Notification from "../components/Notification.vue";
 
 const router = useRouter() // get a reference to our vue router
 
 // defining props values
 const formTitle = ref<string>("Log in:")
 const nameFormVisible = ref<boolean>(false)
+
+//notifications
+const notificationMsg = ref<string>("Notification")
 
 // firebase Authentication
 const errMsg = ref<string>("")
