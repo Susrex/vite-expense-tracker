@@ -6,12 +6,9 @@ import App from './App.vue'
 // importing bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
-
-
 // importing firebase (import firebase from "firebase";) !!
 import firebase from "firebase/compat";
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
 //import { getAnalytics } from "firebase/analytics";
 
 // Your web app's Firebase configuration
@@ -26,9 +23,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+//const app = initializeApp(firebaseConfig);
 //const analytics = getAnalytics(app);
+firebase.initializeApp(firebaseConfig);
+const app = createApp(App);
 
-createApp(App)
-.use(router)
-.mount("#app")
+app.use(router).mount("#app")
