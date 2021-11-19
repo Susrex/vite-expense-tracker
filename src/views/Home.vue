@@ -1,24 +1,19 @@
 <template>
   <h1>Home</h1>
-  <h2>User name: {{userName}}</h2>
+  <h2>User name: {{ userName }}</h2>
   <button @click="click">Click</button>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+// import global state
 import currentUser from '../composables/currentUser.ts';
-export default defineComponent({
-  setup() {
-    const click = () => {
-      console.log("click")
-      currentUser.changeName("Paul")
-    }
-    return {
-      userName: currentUser.name,
-      click
-    }
-  },
-});
+
+const userName = currentUser.name
+
+const click = () => {
+  console.log("click")
+  currentUser.changeName("Paul")
+}
 </script>
 
 <style scoped>
