@@ -37,8 +37,8 @@ const formNameVisible = ref<boolean>(props.nameVisible)
 
 //Exporting values to parent component using emits
 const emit = defineEmits<{
-  (e: 'userCredentials', credentials: {email: string, password: string, name: string})
-      : void }>()
+  (e: 'userCredentials', credentials: {email: string, password: string, name: string}): void
+}>()
 
 const name = ref<string>("")
 const email = ref<string>("") //making name, email and password reactive vue variables
