@@ -27,7 +27,7 @@ const nameFormVisible = ref<boolean>(true)
 // firebase Authentication
 const errMsg = ref<string>("Error")
 const registerByPasswordAndEmail = ($event) => {
-  loading.toggleLoading()
+  loading.toggleLoading() // spinner is visible, form is disabled
   firebase
     .auth() //get the auth api
     .createUserWithEmailAndPassword($event.email, $event.password)
@@ -35,20 +35,27 @@ const registerByPasswordAndEmail = ($event) => {
       response.user.updateProfile({
         displayName: $event.name //hopefully it saves userName in database...
       })
-        .then(() => {
-          console.log(`Successfully registered user ${$event.name}`);
-          createToast(`Successfully registered user ${$event.name}`,
-              {
-                timeout: 2000,
-              })
-          // saving just register user
-          User.newUser({
-            name: $event.name,
-            email: $event.email,
-          })
-          router.push('/expenses') // redirect to the feed
-          loading.toggleLoading()
+      firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid)
+        .set({
+          userName: $event.name,
+          email: $event.email
         })
+        .catch(error => {
+          console.log('Something went wrong with added user to firestore: ', error);
+        })
+        .then(() => {
+        createToast(`Successfully registered user ${$event.name}`,
+            {
+              timeout: 2000,
+            })
+        // saving just register user todo: watcher to firebase.auth.currentUser
+        User.newUser({
+          name: $event.name,
+          email: $event.email,
+        })
+        router.push('/expenses') // redirect to the feed
+        loading.toggleLoading() // the spinner is no longer visible
+      })
     })
     .catch(error => {
       switch (error.code) {

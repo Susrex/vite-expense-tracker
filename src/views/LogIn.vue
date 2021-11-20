@@ -43,13 +43,14 @@ const loginByPasswordAndEmail = ($event) => {
       .auth() //get the auth api
       .signInWithEmailAndPassword($event.email, $event.password)
       .then((response) => {
-        console.log(`Successful log in user: ${$event.email}`);
-        router.push('/expenses') // redirect to the feed
-        console.log(firebase.auth().currentUser.displayName)
+        // redirect to the /expanses
+        router.push('/expenses')
+        // saving current user
         User.newUser({
           name: firebase.auth().currentUser.displayName,
           email: $event.email,
         })
+        // creating a new notification
         createToast(`User ${User.name.value} has been successfully logged in.`,
             {
               timeout: 2000,
