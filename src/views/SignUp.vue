@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import firebase from "firebase/compat";
-import { useRouter } from 'vue-router' // import router
+import { useRouter } from 'vue-router' // import index
 import { ref } from 'vue'
 //import toast-notifications
 import { createToast } from 'mosha-vue-toastify';
@@ -23,7 +23,7 @@ import 'mosha-vue-toastify/dist/style.css'
 import SignInForm from "../components/SignInForm.vue";
 import Notification from "../components/Notification.vue";
 
-const router = useRouter() // get a reference to our vue router
+const index = useRouter() // get a reference to our vue index
 
 // defining props values
 const formTitle = ref<string>("Log in:")
