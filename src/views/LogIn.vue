@@ -44,13 +44,11 @@ const loginByPasswordAndEmail = ($event) => {
       .signInWithEmailAndPassword($event.email, $event.password)
       .then((response) => {
         console.log(`Successful log in user: ${$event.email}`);
-        //todo: save current user here
         router.push('/expenses') // redirect to the feed
         console.log(firebase.auth().currentUser.displayName)
         User.newUser({
           name: firebase.auth().currentUser.displayName,
           email: $event.email,
-          password: $event.password
         })
         createToast(`User ${User.name.value} has been successfully logged in.`,
             {

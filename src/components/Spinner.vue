@@ -12,7 +12,6 @@
 import loading from "../store/loading"
 
 const load = loading.load
-console.log(load)
 
 </script>
 

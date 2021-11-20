@@ -5,10 +5,7 @@ const state = reactive({
 });
 
 const load = computed(() => state.loading)
-const toggleLoading = () => {
-    state.loading = !state.loading
-    console.log("Loading: " + state.loading)
-}
+const toggleLoading = () => { state.loading = !state.loading }
 
 const uiLoading = {
     load,
