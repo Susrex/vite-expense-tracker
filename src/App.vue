@@ -1,19 +1,13 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
 <!--  <HelloWorld msg="Hello world"></HelloWorld>-->
-  <nav-bar></nav-bar>
+  <component :is="NavBar"/>
+  <component :is="Spinner" />
   <router-view></router-view>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script setup lang="ts">
+import HelloWorld from './components/HelloWorld.vue';
 import NavBar from "./components/NavBar.vue";
-
-export default {
-  name: 'App',
-  components: {
-    NavBar,
-    HelloWorld
-  }
-}
+import Spinner from "./components/Spinner.vue";
 </script>

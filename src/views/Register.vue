@@ -9,13 +9,16 @@
 
 <script setup lang="ts">
 import firebase from "firebase/compat";
-import { useRouter } from 'vue-router' // import index
+import { useRouter } from 'vue-router' // import router
 import { ref } from 'vue'
 //import components
 import SignInForm from "../components/SignInForm.vue";
 import {createToast} from "mosha-vue-toastify";
+//import global state
+import User from "../store/currentUser"
+import loading from "../store/loading";
 
-const index = useRouter() // get a reference to our vue index
+const router = useRouter() // get a reference to our vue index
 
 // defining props values
 const formTitle = ref<string>("Create a new Account:")
@@ -24,6 +27,7 @@ const nameFormVisible = ref<boolean>(true)
 // firebase Authentication
 const errMsg = ref<string>("Error")
 const registerByPasswordAndEmail = ($event) => {
+  loading.toggleLoading()
   firebase
     .auth() //get the auth api
     .createUserWithEmailAndPassword($event.email, $event.password)
@@ -37,8 +41,13 @@ const registerByPasswordAndEmail = ($event) => {
               {
                 timeout: 2000,
               })
-          //todo: save current user here
+          // saving just register user
+          User.newUser({
+            name: $event.name,
+            email: $event.email,
+          })
           router.push('/expenses') // redirect to the feed
+          loading.toggleLoading()
         })
     })
     .catch(error => {
@@ -57,6 +66,7 @@ const registerByPasswordAndEmail = ($event) => {
           {
             timeout: 2000,
           })
+      loading.toggleLoading()
     });
 }
 </script>
