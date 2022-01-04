@@ -6,9 +6,6 @@
         :nameVisible="nameFormVisible"
         class="mx-auto"
         @userCredentials="loginByPasswordAndEmail"/>
-      <component
-        :is="Notification"
-        :msg="notificationMsg"/>
   </div>
 </template>
 
@@ -21,7 +18,6 @@ import { createToast } from 'mosha-vue-toastify';
 import 'mosha-vue-toastify/dist/style.css'
 //import components
 import SignInForm from "../components/SignInForm.vue";
-//import Notification from "../components/Notification.vue";
 //import global state
 import User from "../store/currentUser"
 import loading from "../store/loading";
@@ -46,10 +42,10 @@ const loginByPasswordAndEmail = ($event) => {
         // redirect to the /expanses
         router.push('/expenses')
         // saving current user
-        User.newUser({
-          name: firebase.auth().currentUser.displayName,
-          email: $event.email,
-        })
+        // User.newUser({
+        //   name: firebase.auth().currentUser.displayName,
+        //   email: $event.email,
+        // })
         // creating a new notification
         createToast(`User ${User.name.value} has been successfully logged in.`,
             {

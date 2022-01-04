@@ -27,6 +27,7 @@ const activeRoute = computed(() => router.currentRoute.value.path); // gets the 
 const isActive = path => path === activeRoute.value; // returns true if current path is active index path
 
 const userLoggedIn = User.loggedIn
+console.log("userLoggedIN" + userLoggedIn)
 const userName = User.name
 
 const signOut = () => {
@@ -37,7 +38,7 @@ const signOut = () => {
         {
           timeout: 2000,
         })
-    User.logOut()
+    // User.logOut()
   }
 }
 

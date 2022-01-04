@@ -23,4 +23,6 @@
 ### Firebase authentication
 - https://remotestack.io/how-to-integrate-firebase-authentication-in-vue-js/
 - https://learnvue.co/2021/06/a-vue-firebase-authentication-tutorial-vue-3-and-firebase/
+### Connect Firestore
+- https://javascript.plainenglish.io/firebase-authentication-with-firestore-database-78e6e4f348c6
 

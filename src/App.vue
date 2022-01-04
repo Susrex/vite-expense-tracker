@@ -7,7 +7,9 @@
 </template>
 
 <script setup lang="ts">
+//import components
 import HelloWorld from './components/HelloWorld.vue';
 import NavBar from "./components/NavBar.vue";
 import Spinner from "./components/Spinner.vue";
+
 </script>
